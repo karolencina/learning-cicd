@@ -1,0 +1,56 @@
+# This is the name shown in GitHub Actions UI
+name: CI Pipeline
+
+on:
+  push:
+    # Run workflow on push to main branch
+    branches: [main]
+  pull_request:
+    # Run workflow on pull requests into main
+    branches: [main]
+
+jobs:
+  # Defines a job names build-test
+  build-test:
+    runs-on: ubuntu-latest # GitHub-hosted Linux runner
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+
+      # FRONTEND
+      - name: 🛠 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 📦 Install frontend deps
+        working-directory: frontend
+        run: npm ci
+
+      - name: 📐 Lint frontend
+        working-directory: frontend
+        run: npm run lint
+
+      - name: 🏗 Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      # BACKEND
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install backend deps
+        working-directory: backend
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: 🧪 Run backend tests
+        working-directory: backend
+        run: |
+          source venv/bin/activate
+          pytest
