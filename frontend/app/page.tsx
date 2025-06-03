@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h2>This is what I've done:</h2>
+        <h2>This is what I&apos;ve done:</h2>
         <ol>
           <li>
             Created a local <code>build.sh</code> script.
