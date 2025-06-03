@@ -26,7 +26,7 @@ export default function Home() {
             <Image
               className={styles.logo}
               src="/github-mark.svg"
-              alt="Github logomark"
+              alt="GitHub logomark"
               width={20}
               height={20}
             />
