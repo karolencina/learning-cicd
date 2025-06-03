@@ -40,7 +40,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          This UI has been built using nextjs.org →
+          This UI has been built using Next.js (nextjs.org) →
         </a>
       </footer>
     </div>
